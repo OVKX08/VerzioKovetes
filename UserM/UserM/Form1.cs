@@ -17,8 +17,8 @@ namespace UserM
         public Form1()
         {
             InitializeComponent();
-            label1.Text = Resource.LastName; //label1
-            label2.Text = Resource.FirstName; //labe2
+            label1.Text = Resource.FullName; //label1
+            
             button1.Text = Resource.Add;
 
             listBox1.DataSource = users;
