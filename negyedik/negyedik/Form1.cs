@@ -12,6 +12,9 @@ namespace negyedik
 {
     public partial class Form1 : Form
     {
+        RealEstateEntities context = new RealEstateEntities();
+        List<Flat> flats;
+
         public Form1()
         {
             InitializeComponent();
@@ -21,5 +24,12 @@ namespace negyedik
         {
 
         }
-    }
-}
+        
+        private void LoadData()
+        {
+            flats = context.Flat.ToList();
+        }
+
+
+    }    
+}   
