@@ -135,6 +135,10 @@ namespace negyedik
             Excel.Range tableRange = xlSheet.get_Range(GetCell(1, 1), GetCell(lastRowID, headers.Length));
             tableRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
 
+            //1.oszlop
+            Excel.Range firstcolumnRange = xlSheet.get_Range(GetCell(2, 1), GetCell(lastRowID, 1));
+            firstcolumnRange.Interior.Color = Color.LightYellow;
+            firstcolumnRange.Font.Bold=true;
 
         }
 
