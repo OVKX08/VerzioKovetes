@@ -145,7 +145,7 @@ namespace negyedik
 
             Excel.Range lastcolumnRange = xlSheet.get_Range(GetCell(2, lastColID), GetCell(lastRowID, lastColID));
             lastcolumnRange.Interior.Color = Color.LightGreen;
-
+            lastcolumnRange.NumberFormat = "0.00";
         }
 
         private string GetCell(int x, int y)
