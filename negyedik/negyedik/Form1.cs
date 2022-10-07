@@ -108,17 +108,18 @@ namespace negyedik
                 values[counter, 5] = f.NumberOfRooms;
                 values[counter, 6] = f.FloorArea;
                 values[counter, 7] = f.Price;
+                values[counter, 8] = $"=(H{counter + 2} /G{counter + 2}) * 1000000";
 
-                decimal sqm = f.FloorArea / f.Price;
-                
-                values[counter, 8] = sqm;
+                /*  decimal sqm = f.FloorArea / f.Price;
+
+                  values[counter, 8] = sqm;*/
                 counter++;
             }
             xlSheet.get_Range(
             GetCell(2, 1),
             GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
 
-
+            //header
             Excel.Range headerRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
             headerRange.Font.Bold = true;
             headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
@@ -127,6 +128,12 @@ namespace negyedik
             headerRange.RowHeight = 40;
             headerRange.Interior.Color = Color.LightBlue;
             headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            //Törzs
+
+            int lastRowID = xlSheet.UsedRange.Rows.Count;
+            Excel.Range tableRange = xlSheet.get_Range(GetCell(1, 1), GetCell(lastRowID, headers.Length));
+            tableRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
 
 
         }
