@@ -136,14 +136,14 @@ namespace negyedik
             tableRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
 
             //1.oszlop
-            Excel.Range firstcolumnRange = xlSheet.get_Range(GetCell(2, 1), GetCell(lastRowID, 1));
+            Excel.Range firstcolumnRange = xlSheet.get_Range(GetCell(2, 1), GetCell(lastRowID-1, 1));
             firstcolumnRange.Interior.Color = Color.LightYellow;
             firstcolumnRange.Font.Bold=true;
 
             //utolso oszlop
             int lastColID = xlSheet.UsedRange.Columns.Count;
 
-            Excel.Range lastcolumnRange = xlSheet.get_Range(GetCell(2, lastColID), GetCell(lastRowID, lastColID));
+            Excel.Range lastcolumnRange = xlSheet.get_Range(GetCell(2, lastColID), GetCell(lastRowID-1, lastColID));
             lastcolumnRange.Interior.Color = Color.LightGreen;
             lastcolumnRange.NumberFormat = "0.00";
         }
