@@ -140,6 +140,12 @@ namespace negyedik
             firstcolumnRange.Interior.Color = Color.LightYellow;
             firstcolumnRange.Font.Bold=true;
 
+            //utolso oszlop
+            int lastColID = xlSheet.UsedRange.Columns.Count;
+
+            Excel.Range lastcolumnRange = xlSheet.get_Range(GetCell(2, lastColID), GetCell(lastRowID, lastColID));
+            lastcolumnRange.Interior.Color = Color.LightGreen;
+
         }
 
         private string GetCell(int x, int y)
