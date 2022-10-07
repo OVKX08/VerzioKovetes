@@ -24,6 +24,7 @@ namespace negyedik
         {
             InitializeComponent();
             LoadData();
+            CreateExcel();
             CreateTable();
         }
 
@@ -82,7 +83,7 @@ namespace negyedik
                 "Negyzetmeter ar (Ft/m2)"
             };
 
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < headers.Length; i++)
             {
                 
                 
