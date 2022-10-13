@@ -22,6 +22,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             LoadData();
+            CreateExcel();
         }
         Excel.Application xlApp;
         Excel.Workbook xlWB;
@@ -103,11 +104,41 @@ namespace WindowsFormsApp1
                 values[counter, 8] = $"=(H{counter+2}/ G{counter+2})*1000000";
 
                 counter++;
-            } 
+            }
+            xlSheet.get_Range(
+                GetCell(2, 1),
+                GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
+
+            Excel.Range headerRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
+            headerRange.Font.Bold = true;
+            headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            headerRange.EntireColumn.AutoFit();
+            headerRange.RowHeight = 40;
+            headerRange.Interior.Color = Color.LightBlue;
+            headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
         }
 
-        private void GetCell(int x, int y)
+        private string GetCell(int x, int y)
         {
+            string ExcelCoordinate = "";
+            int dividend = y;
+            int modulo;
+
+            while (dividend>0)
+            {
+                modulo = (dividend - 1) % 26;
+                ExcelCoordinate = Convert.ToChar(65 + modulo).ToString() + ExcelCoordinate;
+                dividend = (int)((dividend - modulo) / 26);
+
+            }
+            ExcelCoordinate += x.ToString();
+
+            return ExcelCoordinate;
+
+            
+               
 
         }
     }
