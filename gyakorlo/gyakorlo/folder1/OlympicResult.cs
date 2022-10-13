@@ -13,5 +13,9 @@ namespace gyakorlo
         public int[] Medals { get; set; }
         public int Position { get; set; }
 
+       /* public static implicit operator OlympicResult(OlympicResult v)
+        {
+            throw new NotImplementedException();
+        }*/
     }
 }
