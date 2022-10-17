@@ -30,15 +30,15 @@ namespace otodik
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.chartRateData = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dtmStart = new System.Windows.Forms.DateTimePicker();
+            this.dtmEnd = new System.Windows.Forms.DateTimePicker();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartRateData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
@@ -56,46 +56,51 @@ namespace otodik
             // 
             // chartRateData
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartRateData.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartRateData.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chartRateData.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartRateData.Legends.Add(legend1);
             this.chartRateData.Location = new System.Drawing.Point(301, 52);
             this.chartRateData.Name = "chartRateData";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartRateData.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartRateData.Series.Add(series1);
             this.chartRateData.Size = new System.Drawing.Size(786, 443);
             this.chartRateData.TabIndex = 1;
             this.chartRateData.Text = "chart1";
             // 
-            // form1BindingSource
+            // dtmStart
             // 
-            this.form1BindingSource.DataSource = typeof(otodik.Form1);
+            this.dtmStart.Location = new System.Drawing.Point(12, 24);
+            this.dtmStart.Name = "dtmStart";
+            this.dtmStart.Size = new System.Drawing.Size(200, 22);
+            this.dtmStart.TabIndex = 2;
+            this.dtmStart.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
-            // dateTimePicker1
+            // dtmEnd
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(12, 24);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker1.TabIndex = 2;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(218, 24);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker2.TabIndex = 3;
+            this.dtmEnd.Location = new System.Drawing.Point(218, 24);
+            this.dtmEnd.Name = "dtmEnd";
+            this.dtmEnd.Size = new System.Drawing.Size(200, 22);
+            this.dtmEnd.TabIndex = 3;
+            this.dtmEnd.ValueChanged += new System.EventHandler(this.dtmEnd_ValueChanged);
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "EUR"});
             this.comboBox1.Location = new System.Drawing.Point(445, 24);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 24);
             this.comboBox1.TabIndex = 4;
+            this.comboBox1.Text = "EUR";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // form1BindingSource
+            // 
+            this.form1BindingSource.DataSource = typeof(otodik.Form1);
             // 
             // Form1
             // 
@@ -103,8 +108,8 @@ namespace otodik
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1110, 528);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dtmEnd);
+            this.Controls.Add(this.dtmStart);
             this.Controls.Add(this.chartRateData);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Form1";
@@ -122,8 +127,8 @@ namespace otodik
         private System.Windows.Forms.BindingSource form1BindingSource;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartRateData;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dtmStart;
+        private System.Windows.Forms.DateTimePicker dtmEnd;
         private System.Windows.Forms.ComboBox comboBox1;
     }
 }

@@ -22,8 +22,17 @@ namespace otodik
         public Form1()
         {
             InitializeComponent();
+
+            RefreshData();
+        }
+
+        private void RefreshData()
+        {
+            Rates.Clear();
             dataGridView1.DataSource = Rates;
             chartRateData.DataSource = Rates;
+            RequestService();
+            DisplayData();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -36,9 +45,9 @@ namespace otodik
             var mnbService = new MNBArfolyamServiceSoapClient();
             var request = new GetExchangeRatesRequestBody()
             {
-                currencyNames = "EUR",
-                startDate = "2022-01-01",
-                endDate = "2022-06-30"
+                currencyNames = comboBox1.SelectedItem.ToString(),
+                startDate = dtmStart.Value.ToString(),
+                endDate = dtmEnd.Value.ToString()
             };
             var response = mnbService.GetExchangeRates(request);
 
@@ -85,7 +94,17 @@ namespace otodik
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
+            RefreshData();
+        }
 
+        private void dtmEnd_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshData();
         }
     }
 }
