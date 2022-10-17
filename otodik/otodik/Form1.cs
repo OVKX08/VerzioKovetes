@@ -18,6 +18,7 @@ namespace otodik
     {
 
         BindingList<RateData> Rates = new BindingList<RateData>();
+        BindingList<string> Currencies = new BindingList<string>();
 
         public Form1()
         {
@@ -31,6 +32,7 @@ namespace otodik
             Rates.Clear();
             dataGridView1.DataSource = Rates;
             chartRateData.DataSource = Rates;
+            comboBox1.DataSource = Currencies;
             RequestService();
             DisplayData();
         }
