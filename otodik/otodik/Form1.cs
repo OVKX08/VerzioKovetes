@@ -23,6 +23,7 @@ namespace otodik
         public Form1()
         {
             InitializeComponent();
+            comboBox1.Text = "EUR";
 
             RefreshData();
         }
@@ -47,7 +48,8 @@ namespace otodik
             var mnbService = new MNBArfolyamServiceSoapClient();
             var request = new GetExchangeRatesRequestBody()
             {
-                currencyNames = comboBox1.SelectedItem.ToString(),
+               // currencyNames = comboBox1.SelectedItem.ToString(),
+                currencyNames = "EUR",
                 startDate = dtmStart.Value.ToString(),
                 endDate = dtmEnd.Value.ToString()
             };
