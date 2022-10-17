@@ -37,8 +37,8 @@ namespace otodik
             var request = new GetExchangeRatesRequestBody()
             {
                 currencyNames = "EUR",
-                startDate = "2020-01-01",
-                endDate = "2020-06-30"
+                startDate = "2022-01-01",
+                endDate = "2022-06-30"
             };
             var response = mnbService.GetExchangeRates(request);
 
@@ -81,6 +81,11 @@ namespace otodik
             ChartArea.AxisX.MajorGrid.Enabled = false;
             ChartArea.AxisY.MajorGrid.Enabled = false;
             ChartArea.AxisY.IsStartedFromZero = false;
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
