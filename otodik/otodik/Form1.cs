@@ -24,7 +24,7 @@ namespace otodik
         {
             InitializeComponent();
             comboBox1.Text = "EUR";
-
+            RequestCurrencies();
             RefreshData();
         }
 
@@ -33,7 +33,7 @@ namespace otodik
             Rates.Clear();
             dataGridView1.DataSource = Rates;
             chartRateData.DataSource = Rates;
-            comboBox1.DataSource = Currencies;
+           
             RequestService();
             DisplayData();
         }
@@ -43,12 +43,24 @@ namespace otodik
 
         }
 
+        private void RequestCurrencies()
+        {
+            comboBox1.DataSource = Currencies;
+
+            var mnbService = new MNBArfolyamServiceSoapClient();
+            var request = new GetCurrenciesRequest();
+
+            //var response = mnbService.GetCurrencies();
+
+
+        }
+
         private void RequestService()
         {
             var mnbService = new MNBArfolyamServiceSoapClient();
             var request = new GetExchangeRatesRequestBody()
             {
-               // currencyNames = comboBox1.SelectedItem.ToString(),
+                //currencyNames = comboBox1.SelectedItem.ToString(),
                 currencyNames = "EUR",
                 startDate = dtmStart.Value.ToString(),
                 endDate = dtmEnd.Value.ToString()
@@ -109,6 +121,11 @@ namespace otodik
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             RefreshData();
+        }
+
+        private void chartRateData_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
