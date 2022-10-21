@@ -72,6 +72,7 @@ namespace otodik
             foreach (XmlElement x in xml.DocumentElement.ChildNodes[0])
             {
                 Currencies.Add(x.InnerText);
+
             }
 
 
@@ -98,14 +99,18 @@ namespace otodik
 
             foreach (XmlElement element in xml.DocumentElement)
             {
+
                 var rate = new RateData();
+                
                 Rates.Add(rate);
 
                 rate.Date = DateTime.Parse(element.GetAttribute("date"));
 
                 var childElement = (XmlElement)element.ChildNodes[0];
+                if (childElement == null) continue;
                 rate.Currency = childElement.GetAttribute("request");
-
+               
+                
                 var unit = decimal.Parse(childElement.GetAttribute("unit"));
                 var value = decimal.Parse(childElement.InnerText);
                 if (unit != 0) rate.Value = value/unit;
