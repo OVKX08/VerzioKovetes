@@ -24,6 +24,7 @@ namespace otodik
         {
             InitializeComponent();
             comboBox1.Text = "EUR";
+            comboBox1.DataSource = Currencies;
             RequestCurrencies();
             RefreshData();
         }
@@ -45,12 +46,35 @@ namespace otodik
 
         private void RequestCurrencies()
         {
-            comboBox1.DataSource = Currencies;
+            /*var mnbService = new MNBArfolyamServiceSoapClient();
+            var request = new GetCurrenciesRequestBody();
+            
+            var response = mnbService.GetCurrencies(request);
+
+            var result = response.GetCurrenciesResult;
+
+            var xml = new XmlDocument();
+            xml.LoadXml(result);
+
+            foreach (XmlElement element in xml.DocumentElement)
+            {
+                
+
+            }*/
 
             var mnbService = new MNBArfolyamServiceSoapClient();
-            var request = new GetCurrenciesRequest();
+            var request = new GetCurrenciesRequestBody();
+            var MnbGetExResp = mnbService.GetCurrencies(request);
+            var result = MnbGetExResp.GetCurrenciesResult;
 
-            //var response = mnbService.GetCurrencies();
+            XmlDocument xml = new XmlDocument();
+            xml.LoadXml(result);
+            foreach (XmlElement x in xml.DocumentElement.ChildNodes[0])
+            {
+                Currencies.Add(x.InnerText);
+            }
+
+
 
 
         }
@@ -80,7 +104,7 @@ namespace otodik
                 rate.Date = DateTime.Parse(element.GetAttribute("date"));
 
                 var childElement = (XmlElement)element.ChildNodes[0];
-                rate.Currency = childElement.GetAttribute("curr");
+                rate.Currency = childElement.GetAttribute("request");
 
                 var unit = decimal.Parse(childElement.GetAttribute("unit"));
                 var value = decimal.Parse(childElement.InnerText);
