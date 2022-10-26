@@ -36,16 +36,34 @@ namespace hat
 
         private void createTimer_Tick(object sender, EventArgs e)
         {
-
-        }
-
-        private void conveyorTimer_Tick(object sender, EventArgs e)
-        {
             var ball = Factory.CreateNew();
             _balls.Add(ball);
             ball.Left = -ball.Width;
 
             mainPanel.Controls.Add(ball);
+        }
+
+        private void conveyorTimer_Tick(object sender, EventArgs e)
+        {
+            var max = 0;
+            foreach (var ball in _balls)
+            {
+                ball.MoveBall();
+                if (ball.Left>max)
+                {
+                    max = ball.Left;
+                }
+
+                if (max>1000)
+                {
+                    var oldestball = _balls[0];
+                    mainPanel.Controls.Remove(oldestball);
+                    _balls.Remove(oldestball);
+
+                }
+            }
+
+
         }
     }
 }
