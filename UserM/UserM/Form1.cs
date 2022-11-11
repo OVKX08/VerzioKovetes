@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -84,8 +85,23 @@ namespace UserM
         private void button1_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
-
             sfd.ShowDialog();
+            sfd.FileName = "Export.csv";
+            sfd.DefaultExt = "csv";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter sw = new StreamWriter(sfd.FileName, false, Encoding.Default);
+                sw.WriteLine($"{"Időszak"}; {"Nyereség"}");
+
+                foreach (var t in Ticks)
+                {
+                    sw.WriteLine($"{t.Tick_id}; {t.Price}");
+                }
+                sw.Close();
+                
+            }
+            
         }
     }
 }
