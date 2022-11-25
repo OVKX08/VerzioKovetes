@@ -55,5 +55,10 @@ namespace UnitTestExample
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void dgwAccounts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
