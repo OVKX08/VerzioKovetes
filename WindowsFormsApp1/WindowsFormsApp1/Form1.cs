@@ -18,6 +18,7 @@ namespace WindowsFormsApp1
         List<BirthProbability> BirthProbabilities = new List<BirthProbability>();
         List<DeathProbability> DeathProbabilities = new List<DeathProbability>();
 
+        Random rng = new Random(1234);
         public Form1()
         {
             InitializeComponent();
@@ -25,6 +26,40 @@ namespace WindowsFormsApp1
             Population = GetPopulation(@"C:\Temp\nép.csv");
             BirthProbabilities = GetBirthProbabilities(@"C:\Temp\születés.csv");
             DeathProbabilities = GetDeathProbabilities(@"C:\Temp\halál.csv");
+
+            Simulation();
+
+           
+            
+        }
+
+        private void Simulation()
+        {
+            for (int year = 2005; year < 2024; year++)
+            {
+
+                for (int i = 0; i < Population.Count; i++)
+                {
+
+                    Person p = new Person();
+                    p = Population[i];
+
+                    SimStep(year, p);
+
+
+                }
+
+
+                int nbrOfMales = (from x in Population
+                                  where x.Gender == Gender.Male && x.IsAlive
+                                  select x).Count();
+
+                int nbrOfFemales = (from x in Population
+                                    where x.Gender == Gender.Female && x.IsAlive
+                                    select x).Count();
+                Console.WriteLine(
+        string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
+            }
         }
 
 
@@ -92,6 +127,44 @@ namespace WindowsFormsApp1
             return dprob;
         }
 
+
+        private void SimStep(int year, Person person)
+        {
+            if (!person.IsAlive) return;
+
+            byte age = (byte)(year - person.BirthYear);
+            //halval
+            double dprob = (from x in DeathProbabilities
+                            where x.Gender == person.Gender && x.Age == age
+                            select x.P).FirstOrDefault();
+            //pallos
+            if (rng.NextDouble() <= dprob) person.IsAlive = false;
+
+
+
+            if (person.IsAlive && person.Gender == Gender.Female) 
+            {
+                //szulval
+                double bprob = (from x in BirthProbabilities
+                                where x.Age == age
+                                select x.P).FirstOrDefault();
+
+                //gyerekgyar
+                if (rng.NextDouble()<=bprob)
+                {
+
+                    Person newborn = new Person();
+                    newborn.BirthYear = year;
+                    newborn.NbrOfChildren = 0;
+                    newborn.Gender = (Gender)(rng.Next(1, 3));
+                    Population.Add(newborn);
+
+                }
+            }
+            
+
+            
+        }
 
 
 
