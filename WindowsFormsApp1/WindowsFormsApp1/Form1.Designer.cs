@@ -42,9 +42,19 @@ namespace WindowsFormsApp1
             // numericUpDown1
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(91, 9);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(70, 22);
             this.numericUpDown1.TabIndex = 0;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            2020,
+            0,
+            0,
+            0});
             // 
             // label1
             // 
@@ -61,6 +71,7 @@ namespace WindowsFormsApp1
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(312, 22);
             this.textBox1.TabIndex = 2;
+            this.textBox1.Text = "C:\\temp\\nép.csv";
             // 
             // label2
             // 
@@ -82,12 +93,13 @@ namespace WindowsFormsApp1
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(690, 9);
+            this.btnStart.Location = new System.Drawing.Point(702, 9);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 5;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // richTextBox1
             // 
@@ -101,7 +113,7 @@ namespace WindowsFormsApp1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(787, 577);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnBrowse);

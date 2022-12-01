@@ -27,7 +27,7 @@ namespace WindowsFormsApp1
             BirthProbabilities = GetBirthProbabilities(@"C:\Temp\születés.csv");
             DeathProbabilities = GetDeathProbabilities(@"C:\Temp\halál.csv");
 
-            Simulation();
+           
 
            
             
@@ -35,7 +35,9 @@ namespace WindowsFormsApp1
 
         private void Simulation()
         {
-            for (int year = 2005; year < 2024; year++)
+            int end = (int)numericUpDown1.Value;
+
+            for (int year = 2005; year < end+1; year++)
             {
 
                 for (int i = 0; i < Population.Count; i++)
@@ -172,6 +174,11 @@ namespace WindowsFormsApp1
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            Simulation();
         }
     }
 }
