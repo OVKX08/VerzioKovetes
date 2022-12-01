@@ -18,14 +18,23 @@ namespace WindowsFormsApp1
         List<BirthProbability> BirthProbabilities = new List<BirthProbability>();
         List<DeathProbability> DeathProbabilities = new List<DeathProbability>();
 
+
+        List<int> m = new List<int>();
+        List<int> f = new List<int>();
+        List<int> y = new List<int>();
+
         Random rng = new Random(1234);
         public Form1()
         {
             InitializeComponent();
 
+            
+
             Population = GetPopulation(@"C:\Temp\nép.csv");
             BirthProbabilities = GetBirthProbabilities(@"C:\Temp\születés.csv");
             DeathProbabilities = GetDeathProbabilities(@"C:\Temp\halál.csv");
+
+            
 
            
 
@@ -36,6 +45,7 @@ namespace WindowsFormsApp1
         private void Simulation()
         {
             int end = (int)numericUpDown1.Value;
+
 
             for (int year = 2005; year < end+1; year++)
             {
@@ -55,10 +65,14 @@ namespace WindowsFormsApp1
                 int nbrOfMales = (from x in Population
                                   where x.Gender == Gender.Male && x.IsAlive
                                   select x).Count();
+                m.Add(nbrOfMales);
 
                 int nbrOfFemales = (from x in Population
                                     where x.Gender == Gender.Female && x.IsAlive
                                     select x).Count();
+                f.Add(nbrOfFemales);
+                y.Add(year);
+
                 Console.WriteLine(
         string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
             }
@@ -86,6 +100,27 @@ namespace WindowsFormsApp1
             return population;
         }
 
+
+        private void DisplayResults()
+        {
+            string result="";
+
+            for (int i = 0; i < y.Count(); i++)
+            {
+
+                string r;
+                string r1 = result;
+                int males = m[i];
+                int females = f[i];
+                int year = y[i];
+
+                r = "Szimulációs év: " + year + "\n \t Fiúk: " + males + "\n \t Lányok: " + females + "\n";
+
+                result = result + r;
+            }
+
+            richTextBox1.Text = result;
+        }
 
         public List<BirthProbability> GetBirthProbabilities(string csvpath)
         {
@@ -178,7 +213,9 @@ namespace WindowsFormsApp1
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            richTextBox1.Clear();
             Simulation();
+            DisplayResults();
         }
     }
 }
