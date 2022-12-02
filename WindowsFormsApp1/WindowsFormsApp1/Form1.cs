@@ -217,5 +217,18 @@ namespace WindowsFormsApp1
             Simulation();
             DisplayResults();
         }
+
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog of = new OpenFileDialog();
+            
+            if (of.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+            
+        }
+
     }
 }
