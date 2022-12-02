@@ -29,11 +29,11 @@ namespace WindowsFormsApp1
             InitializeComponent();
 
             
-
+            /*
             Population = GetPopulation(@"C:\Temp\nép.csv");
             BirthProbabilities = GetBirthProbabilities(@"C:\Temp\születés.csv");
             DeathProbabilities = GetDeathProbabilities(@"C:\Temp\halál.csv");
-
+            */
             
 
            
@@ -44,6 +44,11 @@ namespace WindowsFormsApp1
 
         private void Simulation()
         {
+
+            Population = GetPopulation(textBox1.Text);
+            BirthProbabilities = GetBirthProbabilities(@"C:\Temp\születés.csv");
+            DeathProbabilities = GetDeathProbabilities(@"C:\Temp\halál.csv");
+
             int end = (int)numericUpDown1.Value;
 
 
