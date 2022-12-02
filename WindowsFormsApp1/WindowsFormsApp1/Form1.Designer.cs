@@ -71,7 +71,6 @@ namespace WindowsFormsApp1
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(312, 22);
             this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "C:\\temp\\nép.csv";
             // 
             // label2
             // 
@@ -90,6 +89,7 @@ namespace WindowsFormsApp1
             this.btnBrowse.TabIndex = 4;
             this.btnBrowse.Text = "Browse";
             this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click_1);
             // 
             // btnStart
             // 

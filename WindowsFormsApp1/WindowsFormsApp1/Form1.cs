@@ -221,14 +221,22 @@ namespace WindowsFormsApp1
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
-            OpenFileDialog of = new OpenFileDialog();
             
-            if (of.ShowDialog() == DialogResult.OK)
-            {
 
-            }
-            
         }
 
+        private void btnBrowse_Click_1(object sender, EventArgs e)
+        {
+
+            OpenFileDialog of = new OpenFileDialog();
+
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    textBox1.Text = ofd.FileName;
+                }
+            }
+        }
     }
 }
