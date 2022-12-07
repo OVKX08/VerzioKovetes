@@ -27,6 +27,8 @@ namespace week10
         {
             InitializeComponent();
 
+            button1.Visible = false;
+
             ga = gc.ActivateDisplay();
             this.Controls.Add(ga);
 
@@ -87,6 +89,9 @@ namespace week10
             {
                 winnerBrain = winners.FirstOrDefault().Brain.Clone();
                 gc.GameOver -= Gc_GameOver;
+                
+                button1.Visible=true;
+                
                 return;
             }
 
@@ -94,6 +99,18 @@ namespace week10
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            gc.ResetCurrentLevel();
+            gc.AddPlayer(winnerBrain.Clone());
+            gc.AddPlayer();
+            gc.Start(true);
+
+            ga.Focus();
+
 
         }
     }
